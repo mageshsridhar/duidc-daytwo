@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipping</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.3.4/gsap.min.js" integrity="sha512-3WGIRFCuTpZhqYujwLp5RtARPkOy3uRtc3RXB31bJ9/i6VH2C66Z0WBV6gHhdhbUIDKFx8yTkLfEjdQM5Wl+ZQ==" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="button"></div>
+    <div class="buttonContainer">
+        <div class="button">
+            <h3 id="changeText">Ship Now</h3>
+        </div>
+        <div class="parcelTruck">
+                <img id="package" src="Assets/package-01.png" alt="package">
+                <img id="truck"src="Assets/truck-01.png" alt="truck">
+        </div>
+        <hr id="road">
+    </div>
+    <script>
+        document.querySelector(".button").addEventListener('click',animate);
+        function animate()
+        {
+        var tl = gsap.timeline();
+        tl.to("#changeText",{duration: 0.5,y:-60,ease:"power2.in"});
+        tl.to("#road",{duration: 1,y:-72});
+        tl.to("#truck",{duration:1,y:-68},"-=0.6");
+        tl.fromTo("#package",{duration:1,x:-70},{duration:1,x:-70,y:-55},"-=0.6");
+        tl.to("#package",{duration:0.4,y:-72});
+        tl.to("#package",{duration:0.8,x:2});
+        tl.to(".parcelTruck",{duration:2.6,x:200,ease:"elastic.inOut(1, 0.5)"});
+        tl.to("#road",{duration:1,x:300,ease:"power2.inOut"},"-=1.5");
+        setTimeout(() => {  document.querySelector("#changeText").innerHTML = "Shipped" }, 2000);
+        tl.to("#changeText",{duration:0.5,y:0,ease:"power2.out"});
+        }
+    </script>
+</body>
+</html>
